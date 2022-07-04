@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  isUserLoggedIn: boolean = false;
+  // isUserLoggedIn: boolean = false;
 
   constructor(public hardcodedAuthenticationService
     : HardcodedAuthenticationService) { }
 
   ngOnInit() {
-    this.isUserLoggedIn = this.hardcodedAuthenticationService.isUserLoggedIn();
+    // this.isUserLoggedIn = this.hardcodedAuthenticationService.isUserLoggedIn();
   }
 
 }
