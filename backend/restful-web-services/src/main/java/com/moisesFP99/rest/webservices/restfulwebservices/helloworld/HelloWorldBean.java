@@ -1,4 +1,4 @@
-package com.moisesFP99.rest.webservices.restfulwebservices;
+package com.moisesFP99.rest.webservices.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 

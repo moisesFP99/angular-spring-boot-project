@@ -1,3 +1,4 @@
+import { TodoDataService } from './../service/data/todo-data.service';
 import { Component, OnInit } from '@angular/core';
 
 export class Todo {
@@ -18,23 +19,49 @@ export class Todo {
 })
 export class ListTodosComponent implements OnInit {
 
-  todos = [
-    new Todo(1, 'Learn to Dance', false, new Date()),
-    new Todo(2, 'Become an Expert at Angular', false, new Date()),
-    new Todo(3, 'Visit Norway', false, new Date())
-    // {id : 1, description : ''},
-    // {id : 2, description : ''},
-    // {id : 3, description : ''}
-  ]
+  todos: Todo[]
+
+  message: string
+  // = [
+  //   new Todo(1, 'Learn to Dance', false, new Date()),
+  //   new Todo(2, 'Become an Expert at Angular', false, new Date()),
+  //   new Todo(3, 'Visit Norway', false, new Date())
+  //   // {id : 1, description : ''},
+  //   // {id : 2, description : ''},
+  //   // {id : 3, description : ''}
+  // ]
 
   // todo = {
   //   id : 1,
   //   description: 'Learn to Dance'
   // }
 
-  constructor() { }
+  constructor(
+    private todoService:TodoDataService
+  ) { }
 
   ngOnInit() {
+    this.refreshTodos();
+  }
+
+  refreshTodos() {
+    this.todoService.retrieveAllTodos('moisesFP99').subscribe(
+      response => {
+        console.log(response);
+        this.todos = response;
+      }
+    )
+  }
+
+  deleteTodo(id) {
+    console.log(`delete todo ${id}`)
+    this.todoService.deleteTodo('moisesFP99', id).subscribe (
+      response => {
+        console.log(response);
+        this.message = `Delete of Todo ${id} Successful!`;
+        this.refreshTodos();
+      }
+    )
   }
 
 }
